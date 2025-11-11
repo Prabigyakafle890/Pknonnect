@@ -30,7 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 28px;
+  padding: 10px 20px;
   box-shadow: 0 8px 30px var(--soft-shadow);
   backdrop-filter: blur(8px) saturate(1.05);
   border-bottom: 1px solid rgba(0,0,0,0.03);
@@ -49,7 +49,7 @@ body {
 .logo-img {
   height: 44px;
   width: 44px;
-  margin-right: 14px;
+  margin-right: 8px;
   border-radius: 10px;
   background: var(--glass-strong);
   border: 1px solid rgba(0,0,0,0.05);
@@ -208,22 +208,27 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  padding: 12px 28px;
+  padding: 8px 18px;
   width: 100%;
-  gap: 18px;
+  gap: 12px;
 }
 .navbar .logo { flex: 0 0 auto; display:flex; align-items:center; gap:10px; }
-.navbar nav { flex: 1 1 auto; display:flex; justify-content: space-evenly; gap: 22px; max-width: 720px; margin: 0 auto; }
+.navbar nav { flex: 1 1 auto; display:flex; justify-content: flex-end; gap: 10px; max-width: 720px; margin-left: auto; order: 3; padding-right: 12px; }
 .nav-actions { flex: 0 0 auto; display:flex; align-items:center; gap:12px; }
+/* Make nav-actions sit before nav so nav links can be pushed to the extreme right */
+.nav-actions { order: 2; }
+
+/* Ensure the Gallery button never hugs the very right edge */
+#openGalleryBtn { margin-right: 8px; }
 .navbar nav a {
   color: #fff;
-  padding: 8px 14px;
-  border-radius: 10px;
+  padding: 6px 10px;
+  border-radius: 8px;
   font-weight: 700;
   text-decoration: none;
   background: linear-gradient(180deg,#c62828,#9b1f20);
-  box-shadow: 0 12px 36px rgba(198,40,40,0.12);
-  transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+  box-shadow: 0 10px 28px rgba(198,40,40,0.10);
+  transition: transform .16s ease, box-shadow .16s ease, opacity .16s ease;
 }
 .navbar nav a:hover, .navbar nav a:focus {
   transform: translateY(-3px) scale(1.01);
