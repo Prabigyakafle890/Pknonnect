@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Role - PK Verse</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/image.png') }}" type="image/png">
+  <meta name="theme-color" content="#1565c0">
+</head>
+<body class="gradient-bg">
+  <div class="fade-in container">
+    <h2>Select Your Role</h2>
+    <div class="button-group">
+      <a href="login.html?role=student" class="btn">Student</a>
+      <a href="login.html?role=teacher" class="btn">Teacher</a>
+      <a href="login.html?role=staff" class="btn">General Staff</a>
+    </div>
+  </div>
+</body>
+</html>

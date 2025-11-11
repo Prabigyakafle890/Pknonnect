@@ -1,0 +1,89 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+
+# Environment variables and sensitive files
+.env
+*.env
+.env.*
+!.env.template
+app/.env
+config/.env
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+users.db
+
+# User credentials and sensitive data
+users_credentials.csv
+*_credentials.csv
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# AWS credentials (should never be committed)
+.aws/
+aws-credentials*
+
+# Data files (often contain sensitive information)
+data/*.xlsx
+data/*.xls
+data/*.csv
+!data/.gitkeep
+
+# Test output and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json

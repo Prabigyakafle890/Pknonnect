@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Institution Login - PKonnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/institution.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/image.png') }}" type="image/png">
+  <meta name="theme-color" content="#1565c0">
+</head>
+<body class="plain-bg institution">
+  <div class="institution-wrapper">
+    <div class="institution-card">
+      <h2>Institutional Member Login</h2>
+      <p class="lead">Sign in with your college credentials to access institutional features.</p>
+
+      <form id="institutionLoginForm" method="POST" action="{{ url_for('chatbot_bp.institution_login') }}">
+        <label class="form-label">College Email</label>
+        <input type="email" name="email" placeholder="you@pkonnect.edu.np" required class="form-input">
+
+        <label class="form-label">Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required class="form-input">
+
+        {% if error %}
+          <div class="form-error">{{ error }}</div>
+        {% endif %}
+
+        <div class="actions-row">
+          <a href="{{ url_for('chatbot_bp.select_role') }}" class="btn ghost">Back</a>
+          <button type="submit" class="btn primary institution">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

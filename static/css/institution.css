@@ -1,0 +1,82 @@
+
+
+.plain-bg.institution {
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(6,12,30,0.28), rgba(6,12,30,0.28)), url('/static/img/IMG_20251106_082909.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 18px;
+}
+
+.institution-wrapper {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.institution-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.04));
+  border-radius: 14px;
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(2,6,20,0.5);
+  backdrop-filter: blur(6px) saturate(1.02);
+  color: #fff;
+}
+
+.institution-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  margin: 0 0 8px 0;
+}
+.institution-card p.lead {
+  margin: 6px 0 18px 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.dept-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.dept-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,20,0.36); background: rgba(255,255,255,0.09); }
+.dept-card.selected { background: linear-gradient(180deg, rgba(198,40,40,0.18), rgba(198,40,40,0.08)); box-shadow: 0 22px 54px rgba(198,40,40,0.14); }
+.dept-card h3 { margin: 0; color: #fff; }
+.dept-card p { margin: 0; color: rgba(255,255,255,0.86); }
+
+.dept-card input[type="radio"] { width: 18px; height: 18px; accent-color: #c62828; }
+.dept-card .meta { display:flex; flex-direction:column; }
+
+.actions-row { display:flex; gap:12px; justify-content:flex-end; align-items:center; margin-top:6px; }
+
+.btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.btn.primary.institution {
+  background: linear-gradient(180deg,#b71c2a,#8f1628);
+}
+
+@media (max-width:640px) {
+  .institution-card { padding: 18px }
+  .dept-grid { grid-template-columns: repeat(2,1fr); }
+}

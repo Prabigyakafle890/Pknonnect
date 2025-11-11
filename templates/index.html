@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PKonnect - College Chatbot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/image.png') }}" type="image/png">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='img/image.png') }}">
+  <meta name="theme-color" content="#1565c0">
+</head>
+<body class="plain-bg" data-bg-image="{{ url_for('static', filename='img/IMG_20251106_082909.jpg') }}">
+
+  <header class="navbar">
+    <div class="logo">
+      <img src="{{ url_for('static', filename='img/image.png') }}" alt="Padma Kanya Logo" class="logo-img"/>
+      <span>Padma Kanya <span class="logo-accent">College</span></span>
+    </div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="javascript:void(0)" id="openGalleryBtn" class="btn primary small" onclick="openGallery()">Gallery</a>
+    </nav>
+    <div class="nav-actions">
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-content">
+      <h1>Welcome to <span class="emphasis">PKonnect</span></h1>
+      <p class="subtext">Your intelligent assistant at Padma Kanya Multiple Campus</p>
+      <div class="button-group">
+        <a href="javascript:void(0)" onclick="continueAsGuest(event)" class="btn primary animated-btn">Continue as Guest</a>
+        <a href="{{ url_for('chatbot_bp.select_department') }}" class="btn secondary animated-btn">Institutional Member</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="gallery-modal" aria-hidden="true">
+    <div class="gallery-content">
+      <button class="gallery-close" id="closeGalleryBtn" aria-label="Close gallery">&times;</button>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="lightbox" id="galleryLightbox" aria-hidden="true">
+        <img id="lightboxImg" src="" alt="Expanded photo">
+        <button id="lightboxClose" class="lightbox-close" aria-label="Close">&times;</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- About Section -->
+  <section id="about" class="info-section">
+    <div class="section-content">
+      <h2>About <span class="accent-red">PKonnect</span></h2>
+      <p>
+        <span class="accent-red">PKonnect</span> is a smart chatbot platform designed to streamline access to academic information, assist students and guests,
+        and improve communication within Padma Kanya Multiple Campus.
+      </p>
+      <p>
+        It helps users quickly find course details, department contacts, campus events, and common administrative procedures without waiting in person.
+        PKonnect is available to guests and institutional members and learns from interactions to provide better answers over time.
+      </p>
+
+      <ul class="about-highlights">
+        
+      </ul>
+
+     
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="info-section">
+    <div class="section-content">
+      <h2>Contact Us</h2>
+  <p><strong class="label-accent">Email:</strong> <a href="mailto:pkonnect@pkcampus.edu.np" class="email-link">pkonnect@pkcampus.edu.np</a></p>
+  <p><strong class="label-accent">Phone:</strong> +977 1-5324149</p>
+  <p><strong class="label-accent">Location:</strong> Bagbazar, Kathmandu, Nepal</p>
+    </div>
+  </section>
+
+  <script>
+    // Set background image from data attribute
+    (function() {
+      const body = document.body;
+      const bgImage = body.getAttribute('data-bg-image');
+      if (bgImage) {
+        body.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.22), rgba(0,0,0,0.22)), url('${bgImage}')`;
+        body.style.backgroundSize = 'cover';
+        body.style.backgroundPosition = 'center';
+        body.style.backgroundAttachment = 'fixed';
+        body.style.backgroundRepeat = 'no-repeat';
+        body.style.color = 'var(--text)';
+      }
+    })();
+
+    // Gallery image list (generated at template render time)
+    window.PK_GALLERY_IMAGES = [
+  "1762410732931.webp",
+  "1762410732952.webp",
+  "1762410732974.webp",
+  "1762410733090.webp",
+  "1762410733122.webp",
+  "1762410733155.webp",
+  "20251105_102849(1).webp",
+  "20251105_102903(1).webp",
+  "20251105_132836.webp",
+  "20251105_132849.webp",
+  "20251105_132948.webp",
+  "20251105_133019.webp",
+  "20251105_133037.webp",
+  "20251105_133042.webp",
+  "20251105_133051.webp",
+  "20251105_133104.webp",
+  "20251105_133213.webp",
+  "20251105_133219.webp",
+  "20251105_133226.webp",
+  "20251105_133346.webp",
+  "20251105_133353.webp",
+  "20251105_133356.webp",
+  "20251105_133445.webp",
+  "20251105_134142.webp",
+  "20251105_134243.webp",
+  "20251105_134245.webp",
+  "IMG_20251105_134216.webp",
+  "IMG_20251106_082909.webp"
+    ];
+
+    // Handle "Continue as Guest" - logout and redirect to chatbot
+    async function continueAsGuest(event) {
+      event.preventDefault();
+      
+      try {
+        // Clear session on backend to ensure guest mode
+        await fetch('/logout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        // Clear conversation and redirect to chatbot
+        await fetch('/clear-conversation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+        
+        // Redirect to chatbot with guest parameter
+        window.location.href = "{{ url_for('chatbot_bp.chatbot') }}?guest=true&t=" + Date.now();
+      } catch (err) {
+        console.error('Logout failed:', err);
+        // Still redirect even if logout fails
+        window.location.href = "{{ url_for('chatbot_bp.chatbot') }}?guest=true";
+      }
+    }
+  </script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

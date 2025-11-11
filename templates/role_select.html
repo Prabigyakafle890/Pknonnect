@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Your Role - PKonnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/institution.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/image.png') }}" type="image/png">
+  <meta name="theme-color" content="#1565c0">
+</head>
+<body class="plain-bg institution">
+  <div class="institution-wrapper">
+    <div class="institution-card">
+      <h2>Select Your Role</h2>
+      <p class="lead">Choose whether you are a student, teacher or another member.</p>
+
+      <form id="roleForm" method="POST" action="{{ url_for('chatbot_bp.select_role') }}">
+        <div class="dept-grid">
+          <label class="dept-card role-card" data-value="student">
+            <input type="radio" name="role" value="student">
+            <div class="meta">
+              <h3>Student</h3>
+              <p>Access student resources and coursework.</p>
+            </div>
+          </label>
+          <label class="dept-card role-card" data-value="teacher">
+            <input type="radio" name="role" value="teacher">
+            <div class="meta">
+              <h3>Teacher</h3>
+              <p>Manage courses, answer student queries, and more.</p>
+            </div>
+          </label>
+          <label class="dept-card role-card" data-value="others">
+            <input type="radio" name="role" value="others">
+            <div class="meta">
+              <h3>Other</h3>
+              <p>Non-teaching staff or guests with institutional access.</p>
+            </div>
+          </label>
+        </div>
+        <div id="roleError" class="form-error" style="display:none; text-align:center; margin-top:10px"></div>
+
+        <div class="actions-row">
+          <a href="{{ url_for('chatbot_bp.home') }}" class="btn ghost">Back</a>
+          <button id="roleSubmit" type="submit" class="btn primary institution">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/role.js') }}"></script>
+</body>
+</html>

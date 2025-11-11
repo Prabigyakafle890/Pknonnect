@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select Department - PKonnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/institution.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="{{ url_for('static', filename='img/image.png') }}" type="image/png">
+  <meta name="theme-color" content="#1565c0">
+</head>
+<body class="plain-bg institution">
+  <div class="institution-wrapper">
+    <div class="institution-card">
+      <h2>Select Your Department</h2>
+      <p class="lead">Choose the department you belong to so we can tailor information and access.</p>
+
+      <form id="deptForm" method="POST" action="{{ url_for('chatbot_bp.select_department') }}">
+        <div class="dept-grid">
+          <label class="dept-card" data-value="BSC CSIT">
+            <input type="radio" name="department" value="BSC CSIT">
+            <div class="meta">
+              <h3>BSC CSIT</h3>
+              <p>Undergraduate program in Computer Science and IT.</p>
+            </div>
+          </label>
+          <label class="dept-card" data-value="BIT">
+            <input type="radio" name="department" value="BIT">
+            <div class="meta">
+              <h3>BIT</h3>
+              <p>Bachelor of Information Technology program.</p>
+            </div>
+          </label>
+        </div>
+        <div id="deptError" class="form-error" style="display:none; text-align:center; margin-top:10px"></div>
+
+        <div class="actions-row">
+          <a href="{{ url_for('chatbot_bp.home') }}" class="btn ghost">Back</a>
+          <button id="deptSubmit" type="submit" class="btn primary institution">Continue</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/institution.js') }}"></script>
+</body>
+</html>
